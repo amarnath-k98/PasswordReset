@@ -1,23 +1,44 @@
-import sgMail from "@sendgrid/mail";
+import { Resend } from "resend";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async (to, subject, html) => {
   try {
-    const msg = {
+    const { data, error } = await resend.emails.send({
+      from: "Recipe App <noreply@resend.dev>",
       to,
-      from: process.env.SENDGRID_SENDER, // must be a verified sender
       subject,
       html,
-    };
+    });
 
-    await sgMail.send(msg);
+    if (error) throw error;
     console.log("Email sent to:", to);
   } catch (err) {
-    console.error("SendGrid email failed:", err.response?.body || err.message);
+    console.error("Resend email failed:", err.message || err);
     throw err;
   }
 };
+
+// import sgMail from "@sendgrid/mail";
+
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// export const sendEmail = async (to, subject, html) => {
+//   try {
+//     const msg = {
+//       to,
+//       from: process.env.SENDGRID_SENDER,
+//       subject,
+//       html,
+//     };
+
+//     await sgMail.send(msg);
+//     console.log("Email sent to:", to);
+//   } catch (err) {
+//     console.error("SendGrid email failed:", err.response?.body || err.message);
+//     throw err;
+//   }
+// };
 
 // import nodemailer from "nodemailer";
 

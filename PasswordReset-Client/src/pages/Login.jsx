@@ -22,7 +22,7 @@ const Login = () => {
     try {
       const res = await login(formData).unwrap();
       dispatch(setUser(res));
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error("Login failed: ", err);
     }

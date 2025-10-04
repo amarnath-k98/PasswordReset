@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import { useDispatch } from "react-redux";
 import { loadUserFromToken } from "./slices/authSlice";
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from './routes/ProtectedRoute';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,14 @@ const App = () => {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

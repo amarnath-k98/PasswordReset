@@ -30,7 +30,7 @@ const Register = () => {
       const res = await register({ name, email, password }).unwrap();
 
       dispatch(setUser({ token: res.token }));
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error("Registration failed: ", err);
       alert(err?.data?.message || "Registration failed");
@@ -69,7 +69,7 @@ const Register = () => {
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Password (min 6 characters)"
           value={formData.password}
           onChange={handleChange}
           required

@@ -55,8 +55,40 @@ This project implements a secure and production-ready password reset flow for a 
 
 ### 1. Clone the Repository
   --- bash ---
-- git clone https://github.com/your-username/password-reset-app
-- cd password-reset-app
+- git clone https://github.com/amarnath-k98/PasswordReset.git
+- cd PasswordReset
+
+### 2. Backend Setup
+- cd server
+- npm install
+
+ --- Create a .env file: ---
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- EMAIL_USER=your_gmail_address
+- EMAIL_PASS=your_gmail_app_password
+- FRONTEND_URL=http://localhost:5173
+
+
+ --- Start the server: ---
+- npm run dev
+
+
+### 3. Frontend Setup
+- cd client
+- npm install
+
+ --- Create a .env file: ---
+- VITE_BASE_URL=http://localhost:5000/api
+
+
+ --- Start the frontend: ---
+- npm run dev
+
+
+
+
+
 
 
 ## API Endpoints
